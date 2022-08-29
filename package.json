@@ -1,0 +1,27 @@
+{
+  "name": "vite-vue3",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 3333",
+    "test": "vite build --mode development"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "normalize.css": "^8.0.1",
+    "pinia": "^2.0.21",
+    "vue": "^3.2.37",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "postcss": "^8.4.16",
+    "postcss-px-to-viewport": "^1.1.1",
+    "unplugin-auto-import": "^0.11.2",
+    "vite": "^3.0.7"
+  }
+}
