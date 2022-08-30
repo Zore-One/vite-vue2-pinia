@@ -19,7 +19,18 @@
                         <li>{{person.hobby}}</li>
                     </ul>
                     <button @click="changcount">修改count</button>
-                    <button @click="changPerson">修改state</button>
+                    <button @click="changperson">修改state</button>
+                    <div>
+                        <h5>一共{{listLength}}条</h5>
+                        <input type="text" v-model="numValue">
+                        <button @click="addList">add</button>
+                    </div>
+                    <ul>
+                        <li v-for="item in todolist" :key="item.id">
+                            {{item.value}}
+                            <button @click="remove(item)">remove</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="main-right">main-right</div>
@@ -30,21 +41,30 @@
 
 <script setup>
 import HelloWorld from '../components/HelloWorld.vue';
-import {useStore} from '../store/index'
+import {useStore} from '../store'
 import {storeToRefs} from 'pinia'
 
 const mainStore = useStore()
 
-const {count,person,count2} = storeToRefs(mainStore)
-const changPerson = ()=> {
-    mainStore.$patch({
-        // person.name:'李四',
-        // person.age:30
-        name:'李四'
-    })
+const {count,person,count2,numValue,todolist,listLength,usermsg} = storeToRefs(mainStore)
+const changperson = ()=> {
+    // mainStore.$patch({
+    //     // person.name:'李四',
+    //     // person.age:30
+    //     name:mainStore.person.name = '李四'
+    // })
+    mainStore.changPerson()
+    console.log('usermsg',usermsg);
 }
 const changcount = ()=> {
     mainStore.changCount()
+}
+const addList = () => {
+    if(!numValue.value) return
+    mainStore.addTodoList()
+}
+const remove = (item) => {
+    mainStore.removeList(item)
 }
 </script>
 
